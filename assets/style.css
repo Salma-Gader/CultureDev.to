@@ -1,0 +1,50 @@
+body {
+    font-family: "Lato", Arial, sans-serif;
+}
+
+.div_part2 {
+    border-radius: 50px;
+    width: 50%;
+    height: 70vh;
+    background-image: linear-gradient(130deg, #012D50, #3c6fa2);
+    transition: all .2s ease-in-out !important;
+}
+
+#signIn {
+    border-radius: 50px;
+    transition: all .2s ease-in-out;
+    height: 70vh;
+}
+
+#signIn:hover {
+    transform: scale(1.1);
+}
+
+.btn {
+    background-image: linear-gradient(to right, #012D50, #3c6fa2) !important;
+    border-radius: 20px;
+    color: white !important;
+    margin-top: 5rem;
+}
+
+h3 {
+    line-height: 1.5;
+}
+
+.btn-singup {
+    border-radius: 20px;
+    border: .7px solid white !important;
+}
+
+.btn-singup:hover {
+    background-color: white;
+    color: black !important;
+}
+
+.btn_singin {
+    margin-top: 5rem !important;
+}
+
+.email {
+    margin-bottom: 3rem !important;
+}
