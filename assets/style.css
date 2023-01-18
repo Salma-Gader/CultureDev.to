@@ -20,7 +20,7 @@ body {
     transform: scale(1.1);
 }
 
-.btn {
+#btn {
     background-image: linear-gradient(to right, #012D50, #3c6fa2) !important;
     border-radius: 20px;
     color: white !important;
@@ -47,4 +47,205 @@ h3 {
 
 .email {
     margin-bottom: 3rem !important;
+}
+
+.btn-signout {
+    border-radius: 20px;
+    border: .7px solid white !important;
+}
+
+.btn-signout:hover {
+    background-color: white;
+    color: black !important;
+}
+
+.card {
+    border-radius: 20px !important;
+}
+
+.product-table {
+    border: 2px solid #3E6D9C !important;
+    border-radius: 1em !important;
+    margin-top: 50px;
+    padding: 50px;
+}
+
+.navbar {
+    background-color: #134686;
+}
+
+#btn {
+    background-image: linear-gradient(to right, #41a4dd, #3c6fa2) !important;
+    border-radius: 20px;
+    color: white !important;
+}
+
+#text-logo {
+    color: white;
+    font-weight: bold;
+}
+
+#container-nav {
+    align-items: center !important;
+}
+
+#logo {
+    margin-right: 55rem;
+}
+
+#sta {
+    background-color: rgb(23, 18, 18, 0.1) !important;
+}
+
+#card {
+    margin-right: 4rem;
+}
+
+.sidebar {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    bottom: 0;
+    width: 250px;
+    background-color: white;
+    padding: 20px;
+    margin-top: 4rem;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px 0 black;
+    margin-left: 2rem;
+}
+
+.sidebar h3 {
+    margin-top: 0;
+}
+
+.sidebar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    margin-left: 250px;
+}
+
+#content-page {
+    margin-left: 25%
+}
+
+body {
+    margin-top: 0%;
+    padding: 0ch;
+}
+
+#bg-div {
+    background-color: #134686;
+    height: 51vh;
+}
+
+#search-i {
+    border-radius: 10px;
+}
+
+#search-b {
+    border-radius: 10px;
+}
+
+#posts {
+    margin-left: 300px;
+    margin-top: 50px;
+}
+
+#post {
+    margin: 30px;
+}
+
+.card-img-top {
+    width: 100%;
+}
+
+#form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    margin: 10%;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px 0 black;
+    padding: 2rem;
+}
+
+#label {
+    margin-bottom: 10px;
+}
+
+#category-name {
+    padding: 12px 20px;
+    margin-bottom: 20px;
+    width: 100%;
+    border-radius: 20px;
+}
+
+#add-category {
+    background-color: #134686;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+#form-p {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    margin: 10%;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px 0 black;
+    padding: 2rem;
+}
+
+#post-title {
+    border-radius: 10px;
+}
+
+label {
+    margin-bottom: 10px;
+}
+
+#post-content {
+    border-radius: 20px;
+    padding: 12px 20px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+select {
+    border-radius: 20px;
+    padding: 12px 20px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+#add-post {
+    background-color: #134686;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+#post-image {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    box-sizing: border-box;
+    content: 'Upload Image';
+    font-weight: bold;
+    cursor: pointer;
+    color: white;
 }

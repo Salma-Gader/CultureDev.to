@@ -55,7 +55,7 @@
                                 </div>
                                 <div class="btn_div">
                                     <input type="submit" name="submit"
-                                        class="btn_singin border-0 form-control btn btn-danger mt-3" value="Sign up">
+                                        class="btn_singin border-0 form-control btn btn-danger mt-3" id="btn" value="Sign up">
                                 </div>
                             </form>
                         </div>
@@ -68,7 +68,7 @@
                             <h5> you have account ?</h5>
                         </div>
                         <div class="mt-5">
-                            <a class=" btn-singup btn btn btn-outline-dark text-white" href='login.php'>Sign in</a>
+                            <a class=" btn-singup btn btn btn-outline-dark text-white" href='login.php' id="btn">Sign in</a>
                         </div>
                     </div>
                 </div>

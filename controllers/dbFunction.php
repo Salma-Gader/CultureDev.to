@@ -125,35 +125,63 @@ class dbFunction extends connect_db{
             $stmt->bindParam(':password', $hashed_password);
             $stmt->execute();
             return true;
-        } catch (PDOException $e) {
+        } catch(PDOException $e) {
             echo 'Registration failed: ' . $e->getMessage();
             return false;
         }
     }
-    public function signin($email,$password) {
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-        $stmt = $this->conn->prepare("SELECT * FROM Admin WHERE email = :username AND password = :password");
-        $stmt->bindParam(':username', $email);
-        $stmt->bindParam(':password', $hashed_password);
-        $stmt->execute();
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($user) {
-        $_SESSION['user_id'] = $user['id'];
-        header('Location : dashboard.php');
-        return true;
-        } else {
-            echo 'faaaaaaaaaaaaaaaaaaaail';
-        return false;
-        }
+    public function signin($email,$password){
+        $sql = "SELECT * FROM Admin WHERE email = :email";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindParam(':email', $email);
+            $stmt->execute();
+            $num = $stmt->rowCount();
+            if ($num > 0){
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                if(password_verify($password, $row['password'])){
+                        $_SESSION['id'] = $row['id'];
+                        $_SESSION['name'] = $row['name'];
+                        $_SESSION['email'] = $row['email'];
+                        $_SESSION['login'] = true;
+                        header('location: dashboard.php');
+                    }
+                 else{
+                    echo '<div class="alert alert-warning">
+                    Wrong password
+                </div>';
+                }
+            }
+             else {
+                echo '<div class="alert alert-warning">
+                Email not found
+            </div>';
+            }
+    //     $stmt = $this->conn->prepare("SELECT * FROM admin WHERE email = :email");
+    //     password_verify($userpassword, $stm["password"]);
+    //     $stmt->bindParam(':email', $email);
+    //     $stmt->execute();
+    //     $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+    //     // die(var_dump($user));
+    //     echo "<br>".$hashed_password;
+    //     echo "<br>".$email;
+    //     if ($user) {
+    //     $_SESSION['user_id'] = $user['id'];
+    //     header('Location : dashboard.php');
+    //     return true;
+    //     } else {
+    //         echo 'faaaaaaaaaaaaaaaaaaaail';
+    //     return false;
+    //     }
+    // }
     }
-    
 }
-$cc =new dbFunction();
-// if (isset($_POST['name'], $_POST['email'], $_POST['password'])){
+// $cc =new dbFunction();
+// // if (isset($_POST['name'], $_POST['email'], $_POST['password'])){
     
-// }
-$ds=$cc->signin("jjk","fff",);;
- echo $ds;
+// // }
+// $ds=$cc->signin("jjk","fff",);;
+//  echo $ds;
 
 
 

@@ -55,7 +55,7 @@
                                     <input type="password" id="password" class="form-control" name="password">
                                 </div>
                                 <div class="btn_div">
-                                    <button type="submit" name="signin" class="btn_singin form-control btn mt-3">Sign in</button>
+                                    <button type="submit" name="signin" class="btn_singin form-control btn mt-3" id="btn">Sign in</button>
                                 </div>
 
                             </form>
@@ -69,7 +69,7 @@
                             <h5> Dont have account ?</h5>
                         </div>
                         <div class="mt-5">
-                            <a class=" btn-singup btn btn btn-outline-dark text-white" href='signup.php'>Sign up</a>
+                            <a class=" btn-singup btn btn btn-outline-dark text-white" id="btn" href='signup.php'>Sign up</a>
                         </div>
                     </div>
                 </div>
