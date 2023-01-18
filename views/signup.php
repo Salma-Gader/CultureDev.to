@@ -14,47 +14,23 @@
 </head>
 
 <body>
-    <section class="d-flex flex-column min-vh-100 justify-content-center align-items-center" id="singin-page">
-        <div class="container">
-            <div id="signIn" class="col-md-10 bg-white border mx-auto shadow">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="m-5 text-center">
-                            <h3>Sign in</h3>
-                        </div>
+    <?php
+    require_once('../controllers/dbFunction.php');
+    if (isset($_POST['name'], $_POST['email'], $_POST['password'])){
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        $user =new dbFunction();
+        if ($user->register($name ,$email,$password)) {
+            header('Location: login.php');
+          } else {
+            echo 'Error creating user';
+          }
 
-                        <div>
-                            <form class="m-5" method="post" name="signin">
-                                <div class="mb-3 email">
-                                    <label for="email" class="form-label">Email</label>
-                                    <input type="email" id="email" class="form-control" name="email">
-                                </div>
-                                <div>
-                                    <label for="password" class="form-label">Password</label>
-                                    <input type="password" id="password" class="form-control" name="password">
-                                </div>
-                                <div class="btn_div">
-                                    <input type="submit" class="btn_singin form-control btn mt-3" value="Sign in">
-                                </div>
+    // echo"good";
+    }
+    ?>
 
-                            </form>
-                        </div>
-                    </div>
-                    <div class="div_part2 col-md-6 d-flex flex-column justify-content-center align-items-center">
-                        <div class="m-5 text-center text-white">
-                            <h1 class="fw-bold">Welcome to CultureDev</h1>
-                        </div>
-                        <div class="text-white">
-                            <h5> Dont have account ?</h5>
-                        </div>
-                        <div class="mt-5">
-                            <a class=" btn-singup btn btn btn-outline-dark text-white" href='signup.php'>Sign up</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
     <section class="d-flex flex-column min-vh-100 justify-content-center align-items-center" id="singup-page">
         <div class="container">
             <div id="signIn" class="col-md-10 bg-white border mx-auto shadow">
@@ -64,7 +40,7 @@
                             <h3>Sign up</h3>
                         </div>
                         <div>
-                            <form class="m-5" method="post" action="../controllers/form.php">
+                            <form class="m-5" method="POST" action="#">
                                 <div class="mb-3">
                                     <label for="username" class="form-label">User Name</label>
                                     <input type="text" id="username" class="form-control" name="name">
@@ -92,7 +68,7 @@
                             <h5> you have account ?</h5>
                         </div>
                         <div class="mt-5">
-                            <a class=" btn-singup btn btn btn-outline-dark text-white" href='signin.php'>Sign in</a>
+                            <a class=" btn-singup btn btn btn-outline-dark text-white" href='login.php'>Sign in</a>
                         </div>
                     </div>
                 </div>

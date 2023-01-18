@@ -1,5 +1,5 @@
 <?php
-include('../models/db.php');
+require_once('../models/db.php');
 function checkInput($data){
     include('database.php');
     $data = trim($data);
