@@ -136,6 +136,7 @@ main {
 body {
     margin-top: 0%;
     padding: 0ch;
+    background-color: #E4E9F7;
 }
 
 #bg-div {
@@ -201,9 +202,6 @@ body {
     align-items: center;
     width: 80%;
     margin: 10%;
-    border-radius: 20px;
-    box-shadow: 0 4px 10px 0 black;
-    padding: 2rem;
 }
 
 #post-title {
@@ -248,4 +246,16 @@ select {
     font-weight: bold;
     cursor: pointer;
     color: white;
+}
+
+#table {
+    margin-left: 300px;
+}
+
+.table-title {
+    text-align: center;
+    margin-bottom: 3rem;
+    border: #134686 solid 3px;
+    border-radius: 20px;
+    width: 100%;
 }

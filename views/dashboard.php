@@ -1,3 +1,14 @@
+<?php
+require_once ('../controllers/dbFunction.php');
+ if(isset($_POST['add-c'])){
+    $nameCategory =$_POST['category-name'];
+    //   echo $nameCategory;
+    $add= new crud;
+    $add->addCategory($nameCategory);
+
+ }
+
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -83,108 +94,165 @@
                     </div>
                 </div>
     </div>
-    <div id="posts" class="row">
-        <div class="card col-6 col-md-3" id="post">
-            <img src="../assets/img/images.png" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
-                <a href="update.php?edit=<?php echo $row['ID']; ?>" class="edit_btn me-3"><i
-                        class="bi bi-pencil-square"></i></a>
-                <a href="dashboard.php?del=<?php echo $row['ID']; ?>" class="del_btn"><i
-                        class="bi bi-trash3-fill"></i></a>
-            </div>
-        </div>
-        <div class="card col-6 col-md-3" id="post">
-            <img src="../assets/img/images.png" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
-                <a href="update.php?edit=<?php echo $row['ID']; ?>" class="edit_btn me-3"><i
-                        class="bi bi-pencil-square"></i></a>
-                <a href="dashboard.php?del=<?php echo $row['ID']; ?>" class="del_btn"><i
-                        class="bi bi-trash3-fill"></i></a>
-            </div>
-        </div>
-        <div class="card col-6 col-md-3" id="post">
-            <img src="../assets/img/images.png" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
-                <a href="update.php?edit=<?php echo $row['ID']; ?>" class="edit_btn me-3"><i
-                        class="bi bi-pencil-square"></i></a>
-                <a href="dashboard.php?del=<?php echo $row['ID']; ?>" class="del_btn"><i
-                        class="bi bi-trash3-fill"></i></a>
-            </div>
-        </div>
-        <div class="card col-6 col-md-3" id="post">
-            <img src="../assets/img/images.png" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
-                <a href="update.php?edit=<?php echo $row['ID']; ?>" class="edit_btn me-3"><i
-                        class="bi bi-pencil-square"></i></a>
-                <a href="dashboard.php?del=<?php echo $row['ID']; ?>" class="del_btn"><i
-                        class="bi bi-trash3-fill"></i></a>
-            </div>
-        </div>
-        <div class="card col-6 col-md-3" id="post">
-            <img src="../assets/img/images.png" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
-                <a href="update.php?edit=<?php echo $row['ID']; ?>" class="edit_btn me-3"><i
-                        class="bi bi-pencil-square"></i></a>
-                <a href="dashboard.php?del=<?php echo $row['ID']; ?>" class="del_btn"><i
-                        class="bi bi-trash3-fill"></i></a>
-            </div>
-        </div>
-        <div class="card col-6 col-md-3" id="post">
-            <img src="../assets/img/images.png" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
-                <a href="update.php?edit=<?php echo $row['ID']; ?>" class="edit_btn me-3"><i
-                        class="bi bi-pencil-square"></i></a>
-                <a href="dashboard.php?del=<?php echo $row['ID']; ?>" class="del_btn"><i
-                        class="bi bi-trash3-fill"></i></a>
-            </div>
-        </div>
-    </div>
-    </div>
+    </section>
+    
+    <section class="d-flex flex-row  mt-5" id="table">
+       
+        <form class="container" method="POST">
+                <div class="product-table container mt-5 table-responsive">
+                <div class="table-title"><h2>Posts</h2></div>
+                    <table class="tabl-e table">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Image</th>
+                                <th scope="col">Title</th>
+                                <th scope="col">Short Description</th>
+                                <th scope="col">Description</th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr>
+                                <th scope="row">1</th>
+                                <td><img src="../assets/img/images.png" class="card-img-top" alt="Product"
+                                        class="img-fluid" height="80" width="70px"></td>
+                                <td>dfgjjkk</td>
+                                <td>hghjkkl</td>
+                                <td>njklmmm</td>
+                                <td><a href="dashboard.php" class="del_btn"><i
+                                            class="bi bi-trash3-fill"></i></a></td>
+                                <td><a href="update.php" class="edit_btn"><i
+                                            class="bi bi-pencil-square"></i></a></td>
+                            </tr>
+                            <tr>
+
+                        </tbody>
+                    </table>
+        </form>
+
+
+    </section>
+    
+    <section class="d-flex flex-row min-vh-100 mt-5" id="table">
+
+        <form class="container" method="POST">
+                <div class="product-table container mt-5 table-responsive">
+                <div class="table-title"><h2>Categories</h2></div>
+                    <table class="tabl-e table">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Title</th>
+
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>aBig data</td>
+                                <td><a href="dashboard.php" class="del_btn"><i
+                                            class="bi bi-trash3-fill"></i></a></td>
+                                <td><a href="update.php" class="edit_btn"><i
+                                            class="bi bi-pencil-square"></i></a></td>
+                            </tr>
+                            <tr>
+
+                        </tbody>
+                    </table>
+        </form>
+
+
+    </section>
+    <!--end dashboard-->
     <div class="sidebar">
         <h3 class="">Categories</h3>
         <ul class="mb-5">
             <li>
-                <a class="text-black" href="category.php">Add category <i class="bi bi-plus"></i></a>
+            <a type="button" data-bs-toggle="modal" data-bs-target="#Modal">
+            Add post <i class="bi bi-plus"></i>
+            </a>
             </li>
-            <li><a href="#"></a></li>
+   <li><a href="#"></a></li>
             <li><a href="#"></a></li>
         </ul>
         <h3 class="text-black mt-5">Recent Posts</h3>
         <ul>
             <li>
-                <a class="text-black" href="add.php">Add post <i class="bi bi-plus"></i></a>
+            <a type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal" value="Launch demo modal">Add category<i class="bi bi-plus"></i></a>
+    
             </li>
             <li><a href="#"></a></li>
             <li><a href="#"></a></li>
         </ul>
 
+
     </div>
-    <form>
+                            <!-- Modal -->
+    <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Add post</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+        <form id="form-p">
+            <label for="post-title" id="title">Post Title:</label>
+            <input type="text" id="post-title" name="post-title">
 
+            <label for="post-content" id="description">Post Content:</label>
+            <textarea id="post-content" name="post-content"></textarea>
+            <label for="post-image">Post Image:</label>
+            <input type="file" id="post-image" name="post-image">
 
+            <label for="post-category" id="Category">Post Category:</label>
+            <select id="post-category" name="post-category">
+                <option value="category1"><?=?></option>
+                <option value="category2">Category 2</option>
+                <option value="category3">Category 3</option>
+            </select>
 
+            
+        </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" id="add-post">Add post</button>
+        </div>
+        </div>
+    </div>
+    </div>
+         
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel" id="form">Add Category</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form name="add-category" action="#" method="POST">
+                <div class="modal-body">
+                   
+                        <label for="category" id="label">Category Name:</label>
+                        <input type="text" id="category" name="category-name">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" id="add-category" name="add-c" >Add Category</button>
+                    
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
-
-
-    </section>
 
 
 
