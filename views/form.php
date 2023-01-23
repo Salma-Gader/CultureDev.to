@@ -1,3 +1,9 @@
+<?php
+// require_once ('../controllers/dbFunction.php');
+// $updaCategory= new crud(); 
+// $info =$updaCategory->updateProduct();
+// echo $info;
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,82 +19,15 @@
     <link rel="stylesheet" href="../assets/style.css">
     <title>Dasshboard</title>
 </head>
-
 <body>
-
-
-    <!-- Button trigger modal -->
-    <a type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal" value="Launch demo modal">Launch demo modal</a>
-        
-    
-
-    Modal
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel" id="form">Add Category</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <label for="category-name" id="label">Category Name:</label>
-                        <input type="text" id="category-name" name="category-name">
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="add-category">Add Category</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
- 
-    
-    <!-- Button trigger modal -->
-<!-- <a type="button" data-bs-toggle="modal" data-bs-target="#Modal">
-  Launch demo modal
-</a> -->
-
-<!-- Modal
-<div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Add post</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-      <form id="form-p">
-        <label for="post-title" id="title">Post Title:</label>
-        <input type="text" id="post-title" name="post-title">
-
-        <label for="post-content" id="description">Post Content:</label>
-        <textarea id="post-content" name="post-content"></textarea>
-        <label for="post-image">Post Image:</label>
-        <input type="file" id="post-image" name="post-image">
-
-        <label for="post-category" id="Category">Post Category:</label>
-        <select id="post-category" name="post-category">
-            <option value="category1">Category 1</option>
-            <option value="category2">Category 2</option>
-            <option value="category3">Category 3</option>
-        </select>
-
-        
-    </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" id="add-post">Add post</button>
-      </div>
-    </div>
+<form id="for">
+  <div >
+<label for="category-name" id="label">Category Name:</label>
+  <input type="text" id="category-name" name="category-name" value="ib">
+  <input type="submit" value="Add Category" id="add-category">
   </div>
-</div> -->
-
-
+  </form>
+  
+    
 </body>
-
 </html>

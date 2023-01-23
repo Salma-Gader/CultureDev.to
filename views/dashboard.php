@@ -213,7 +213,7 @@ require_once ('../controllers/dbFunction.php');
 
             <label for="post-category" id="Category">Post Category:</label>
             <select id="post-category" name="post-category">
-                <option value="category1"><?=?></option>
+                <option value="category1"></option>
                 <option value="category2">Category 2</option>
                 <option value="category3">Category 3</option>
             </select>
