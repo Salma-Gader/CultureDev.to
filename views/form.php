@@ -1,10 +1,14 @@
 <?php
 require_once ('../controllers/dbFunction.php');
-// $updaCategory= new crud(); 
-// $info =$updaCategory->updateProduct();
-// echo $info;
-// $add= new crud;
-// $row=$add->getcategory();
+$add= new crud;
+$row=$add->getcategory();
+if(isset($_POST['updet'])){
+   $name= $_POST['name-e'];
+    $add->saveUpdet($name);
+    header('Location:dashboard.php');
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,11 +26,13 @@ require_once ('../controllers/dbFunction.php');
     <title>Dasshboard</title>
 </head>
 <body>
-<form id="for">
+<form id="for" method="POST">
   <div >
 <label for="category-name" id="label">Category Name:</label>
-  <input type="text" id="category-name" name="category-name" value="ib">
-  <input type="submit" value="Add Category" id="add-category">
+  <?php foreach ($row as $category){ ?>
+  <input type="text" id="category-name" name="name-e" value="<?=$category['name']?>">
+  <input type="submit" value="Add Category" id="add-category" name="updet">
+  <?php } ?>
   </div>
   </form>
   

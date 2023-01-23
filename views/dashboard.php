@@ -1,13 +1,10 @@
 <?php
 require_once ('../controllers/dbFunction.php');
  $add= new crud; 
-
-
  if(isset($_POST['del-c'])){
     $test = $_POST['del-c'];
-    $add->deletCategory( $test);
-    // header('Location : dashboard.php');
-    // echo $test;
+    $add->deletCategory($test);
+
  }
 
  if(isset($_POST['add-c'])){
@@ -17,7 +14,14 @@ require_once ('../controllers/dbFunction.php');
 
  $row=$add->getcategory();
 
-
+ if(isset($_POST['add-post'])){
+ $title=($_POST['post-title']);
+ $description=($_POST['post-content']);
+ $category=($_POST['post-category']);
+ $image=($_POST['post-image']);
+ $add->addPost($title,$description,$category,$image);
+ 
+ }
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,7 +40,6 @@ require_once ('../controllers/dbFunction.php');
 </head>
 
 <body class="dash-body">
-    <div id="bg-div">
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid " id="container-nav">
                 <div id="logo">
@@ -84,26 +87,25 @@ require_once ('../controllers/dbFunction.php');
                 <div class="row mx-auto">
                     <div class="card col-md col-12 m-2 " id="sta">
                         <div class="card-body">
-                            <h3 class="card-title text-center text-white">Totale Products</h3>
-                            <h1 class="card-text text-center text-white">80</h1>
+                            <h3 class="card-title text-center ">Totale Post</h3>
+                            <h1 class="card-text text-center ">80</h1>
                         </div>
                     </div>
                     <div class="card col-md col-12 m-2" id="sta">
                         <div class="card-body">
-                            <h3 class="card-title text-center text-white">Products in stock</h3>
-                            <h1 class="card-text text-center text-white">70</h1>
+                            <h3 class="card-title text-center ">Devlopers</h3>
+                            <h1 class="card-text text-center ">70</h1>
                         </div>
                     </div>
                     <div class="card col-md col-12 m-2" id="sta">
                         <div class="card-body">
-                            <h3 class="card-title text-center text-white">Products out stock</h3>
-                            <h1 class="card-text text-center text-white">100</h1>
+                            <h3 class="card-title text-center ">Categories</h3>
+                            <h1 class="card-text text-center ">100</h1>
                             <div>
                             </div>
                         </div>
                     </div>
                 </div>
-    </div>
     </section>
     
     <section class="d-flex flex-row  mt-5" id="table">
@@ -146,7 +148,7 @@ require_once ('../controllers/dbFunction.php');
 
     </section>
     
-    <section class="d-flex flex-row min-vh-100 mt-5" id="table">
+    <section class="d-flex flex-row  mt-5" id="table">
 
         <form class="container" action="#" method="POST">
                 <div class="product-table container mt-5 table-responsive">
@@ -210,13 +212,13 @@ require_once ('../controllers/dbFunction.php');
                             <!-- Modal -->
     <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
+    <form id="form-p" action="#" method="POST">
         <div class="modal-content">
         <div class="modal-header">
             <h1 class="modal-title fs-5" id="exampleModalLabel">Add post</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-        <form id="form-p">
             <label for="post-title" id="title">Post Title:</label>
             <input type="text" id="post-title" name="post-title">
 
@@ -227,19 +229,19 @@ require_once ('../controllers/dbFunction.php');
 
             <label for="post-category" id="Category">Post Category:</label>
             <select id="post-category" name="post-category">
-                <option value="category1"></option>
-                <option value="category2">Category 2</option>
-                <option value="category3">Category 3</option>
+            <option value="<?= $row['category'] ?>" disabled selected>Select Category</option>
+            <?php foreach ($row as $option){ ?>
+                <option value="<?=$option['id']?>"><?=$option['name']?></option>
+                 <?php } ?>
             </select>
-
-            
-        </form>
+           
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" id="add-post">Add post</button>
+            <button type="submit" class="btn btn-primary" id="add-post" name="add-post">Add post</button>
         </div>
         </div>
+        </form>
     </div>
     </div>
          

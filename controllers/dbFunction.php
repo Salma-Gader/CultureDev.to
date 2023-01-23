@@ -1,6 +1,7 @@
 <?php
 require_once('../models/db.php'); 
 include('script.php');
+session_start();
 
 class dbFunction extends connect_db{
     public function register($name, $email, $password) {
@@ -67,10 +68,30 @@ class crud extends connect_db{
         $stmt = $this->conn->prepare($requet);
         $stmt->execute();
     }
+    public function saveUpdet($name){
+        $id=$_GET['editcategoryid'];
+        $stmt = $this->conn->prepare("UPDATE category SET name = :name WHERE id = $id");
+        $stmt->bindParam(':name',$name);
+        $stmt->execute();
+        // if(mysqli_query($conn, $query)){
+        //   $_SESSION['message'] = "Task has been updated successfully !";
+        //   header('location: dashboard.php');
+        // }
+      }
+      public function addPost($postTitle,$postContent,$postCategory,$postImage){
+        $adminId=$_SESSION['id'];
+        $stmt = $this->conn->prepare("INSERT INTO articles (title,description,category_id,admin_id,image) VALUES (:title,:description,:category_id,:admin_id,:image)");
+        $stmt->bindParam(':title',$postTitle);
+        $stmt->bindParam(':description',$postContent);
+        $stmt->bindParam(':category_id',$postCategory);
+        $stmt->bindParam(':admin_id',$adminId);
+        $stmt->bindParam(':image',$postImage);
+        $stmt->execute();
+        // header('Location:dashboard.php');
+
+    }
 }
 
-
-// $del=$crud->deletCategory();
 
 
 ?>
