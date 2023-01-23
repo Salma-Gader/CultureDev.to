@@ -1,12 +1,22 @@
 <?php
 require_once ('../controllers/dbFunction.php');
+ $add= new crud; 
+
+
+ if(isset($_POST['del-c'])){
+    $test = $_POST['del-c'];
+    $add->deletCategory( $test);
+    // header('Location : dashboard.php');
+    // echo $test;
+ }
+
  if(isset($_POST['add-c'])){
     $nameCategory =$_POST['category-name'];
-    //   echo $nameCategory;
-    $add= new crud;
     $add->addCategory($nameCategory);
-
  }
+
+ $row=$add->getcategory();
+
 
  ?>
 <!DOCTYPE html>
@@ -138,7 +148,7 @@ require_once ('../controllers/dbFunction.php');
     
     <section class="d-flex flex-row min-vh-100 mt-5" id="table">
 
-        <form class="container" method="POST">
+        <form class="container" action="#" method="POST">
                 <div class="product-table container mt-5 table-responsive">
                 <div class="table-title"><h2>Categories</h2></div>
                     <table class="tabl-e table">
@@ -154,15 +164,19 @@ require_once ('../controllers/dbFunction.php');
                         <tbody>
 
                             <tr>
+                                <?php foreach ($row as $category){ ?>
                                 <th scope="row">1</th>
-                                <td>aBig data</td>
-                                <td><a href="dashboard.php" class="del_btn"><i
-                                            class="bi bi-trash3-fill"></i></a></td>
-                                <td><a href="update.php" class="edit_btn"><i
+                                <td><?=$category['name']?></td>
+                                <!-- <input type="hidden" name="id-c" > -->
+                                <td><button type="submit" value="<?=$category['id']?>"  class="del_btn" name="del-c" ><i
+                                            class="bi bi-trash3-fill"></i></button></td>
+
+                                <!-- <td><a href="dashboard.php" class="del_btn"><i
+                                            class="bi bi-trash3-fill"></i></a></td> -->
+                                <td><a href="form.php?editcategoryid=<?=$category['id']?>" class="edit_btn"><i
                                             class="bi bi-pencil-square"></i></a></td>
                             </tr>
-                            <tr>
-
+                            <?php } ?>
                         </tbody>
                     </table>
         </form>

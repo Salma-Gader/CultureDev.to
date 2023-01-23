@@ -46,30 +46,31 @@ class dbFunction extends connect_db{
 
     }
 }
+
 class crud extends connect_db{
     public function addCategory($categoryName){
         $stmt = $this->conn->prepare("INSERT INTO category (name) VALUES (:name)");
         $stmt->bindParam(':name',$categoryName);
         $stmt->execute();
-        $nani="nani";
-        return $nani;
+        header('Location:dashboard.php');
 
     }
     public function getcategory(){
         $stmt = $this->conn->prepare("SELECT * FROM category");
         $stmt->execute();
-        $num =$stmt->fetchAll();
-        
-        
-        return var_dump($num);
+        $num =$stmt->fetchAll(); 
+        return $num;
 
+    }
+    public function deletCategory($id){
+        $requet = "DELETE FROM category WHERE id=$id";
+        $stmt = $this->conn->prepare($requet);
+        $stmt->execute();
     }
 }
 
 
-$hh=new crud();
-$gg=$hh->getcategory();
-echo $gg;
+// $del=$crud->deletCategory();
 
 
 ?>

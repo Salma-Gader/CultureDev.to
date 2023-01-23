@@ -1,8 +1,10 @@
 <?php
-// require_once ('../controllers/dbFunction.php');
+require_once ('../controllers/dbFunction.php');
 // $updaCategory= new crud(); 
 // $info =$updaCategory->updateProduct();
 // echo $info;
+// $add= new crud;
+// $row=$add->getcategory();
 ?>
 <!DOCTYPE html>
 <html lang="en">
