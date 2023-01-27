@@ -16,7 +16,6 @@
 <body>
     <?php
         require_once('../controllers/dbFunction.php');
-        session_start();
 
         $user = new dbFunction();
         if (isset($_POST['email'],$_POST['password'])) {

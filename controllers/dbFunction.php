@@ -68,6 +68,14 @@ class crud extends connect_db{
         $stmt = $this->conn->prepare($requet);
         $stmt->execute();
     }
+        public function updetCategory(){
+        $id=$_GET['editcategoryid'];
+        $stmt = $this->conn->prepare("SELECT * FROM category WHERE ID=$id");
+        $stmt->execute();
+        $num =$stmt->fetchAll(); 
+        return $num;
+
+    }
     public function saveUpdet($name){
         $id=$_GET['editcategoryid'];
         $stmt = $this->conn->prepare("UPDATE category SET name = :name WHERE id = $id");
@@ -87,10 +95,44 @@ class crud extends connect_db{
         $stmt->bindParam(':admin_id',$adminId);
         $stmt->bindParam(':image',$postImage);
         $stmt->execute();
-        // header('Location:dashboard.php');
-
+        header('Location:dashboard.php');
     }
-}
+    public function getPost(){
+        $sql="SELECT articles.id,articles.title,articles.description,category.name, articles.image
+        FROM articles
+        INNER JOIN category ON articles.category_id=category.id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        $post =$stmt->fetchAll(); 
+        return $post;
+    }
+    public function deletPost($id){
+        $requet = "DELETE FROM articles WHERE id=$id";
+        $stmt = $this->conn->prepare($requet);
+        $stmt->execute();
+    }
+    public function updetPost(){
+        $id=$_GET['editPost'];
+        $sql="SELECT articles.id,articles.title,articles.description,category.name, articles.image
+        FROM articles
+        INNER JOIN category ON articles.category_id=category.id WHERE articles.id=$id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        $post =$stmt->fetchAll(); 
+        return $post;
+    }
+    public function saveUpdetPost($postTitle,$postContent,$postImage){
+        $id=$_GET['editPost'];
+        $adminId=$_SESSION['id'];
+        $stmt = $this->conn->prepare("UPDATE articles SET title = :title,description = :description,admin_id = :admin_id,image = :image WHERE id=$id");
+        $stmt->bindParam(':title',$postTitle);
+        $stmt->bindParam(':description',$postContent);
+        $stmt->bindParam(':admin_id',$adminId);
+        $stmt->bindParam(':image',$postImage);
+        $stmt->execute();
+      }
+
+}   
 
 
 

@@ -1,14 +1,12 @@
 <?php
 require_once ('../controllers/dbFunction.php');
 $add= new crud;
-$row=$add->getcategory();
+$row=$add->updetCategory();
 if(isset($_POST['updet'])){
    $name= $_POST['name-e'];
     $add->saveUpdet($name);
     header('Location:dashboard.php');
 }
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,16 +24,17 @@ if(isset($_POST['updet'])){
     <title>Dasshboard</title>
 </head>
 <body>
-<form id="for" method="POST">
+  <div class="for">
+<form id="for" method="POST" >
   <div >
-<label for="category-name" id="label">Category Name:</label>
+<label for="category-name" id="labelf">Category Name:</label>
   <?php foreach ($row as $category){ ?>
   <input type="text" id="category-name" name="name-e" value="<?=$category['name']?>">
   <input type="submit" value="Add Category" id="add-category" name="updet">
   <?php } ?>
   </div>
   </form>
-  
+  </div>
     
 </body>
 </html>

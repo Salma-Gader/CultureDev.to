@@ -4,7 +4,10 @@ require_once ('../controllers/dbFunction.php');
  if(isset($_POST['del-c'])){
     $test = $_POST['del-c'];
     $add->deletCategory($test);
-
+ }
+ if(isset($_POST['del-p'])){
+    $idDel = $_POST['del-p'];
+    $add->deletPost($idDel);
  }
 
  if(isset($_POST['add-c'])){
@@ -13,6 +16,7 @@ require_once ('../controllers/dbFunction.php');
  }
 
  $row=$add->getcategory();
+ $post=$add->getPost();
 
  if(isset($_POST['add-post'])){
  $title=($_POST['post-title']);
@@ -36,6 +40,7 @@ require_once ('../controllers/dbFunction.php');
         href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/fontawesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../assets/style.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
     <title>Dasshboard</title>
 </head>
 
@@ -72,17 +77,15 @@ require_once ('../controllers/dbFunction.php');
         </nav>
         <!---end navbar-->
 
-
-
-        <section>
+        <section id="alert">
             <?php if (isset($_SESSION["email"])) : ?>
-            <div class='alert' role='alert'>
+            <div class="malert" role='alert'>
                 Welcome <?= $_SESSION["email"]?> !
             </div>
             <?php endif?>
         </section>
         <!--start dashboard-->
-        <section class="d-flex flex-row min-vh-100 mt-5" id="content-page">
+        <section class="d-flex flex-row mt-5" id="content-page">
             <form class="container" method="POST">
                 <div class="row mx-auto">
                     <div class="card col-md col-12 m-2 " id="sta">
@@ -106,43 +109,45 @@ require_once ('../controllers/dbFunction.php');
                         </div>
                     </div>
                 </div>
+                </form>
     </section>
     
     <section class="d-flex flex-row  mt-5" id="table">
        
-        <form class="container" method="POST">
+        <form class="container" action="#" method="POST">
                 <div class="product-table container mt-5 table-responsive">
                 <div class="table-title"><h2>Posts</h2></div>
-                    <table class="tabl-e table">
+                    <table class="tabl-e table" id="tablepost">
                         <thead>
                             <tr>
                                 <th scope="col">ID</th>
                                 <th scope="col">Image</th>
                                 <th scope="col">Title</th>
-                                <th scope="col">Short Description</th>
                                 <th scope="col">Description</th>
+                                <th scope="col">Category</th>
                                 <th scope="col"></th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
-
+                          <?php foreach ($post as $info){ ?>
                             <tr>
-                                <th scope="row">1</th>
-                                <td><img src="../assets/img/images.png" class="card-img-top" alt="Product"
+                                <th scope="row"><?=$info['id']?></th>
+                                <td><img src="../assets/img/<?= $info['image']?>" class="card-img-top" alt="Product"
                                         class="img-fluid" height="80" width="70px"></td>
-                                <td>dfgjjkk</td>
-                                <td>hghjkkl</td>
-                                <td>njklmmm</td>
-                                <td><a href="dashboard.php" class="del_btn"><i
-                                            class="bi bi-trash3-fill"></i></a></td>
-                                <td><a href="update.php" class="edit_btn"><i
+                                <td><?= $info['title']?></td>
+                                <td><?= $info['description']?></td>
+                                <td><?= $info['name']?></td>
+                                <td><button type="submit" href="dashboard.php" class="del_btn" value="<?=$info['id']?>" name="del-p"><i
+                                            class="bi bi-trash3-fill"></i></button></td>
+                                <td><a href="updat-post.php?editPost=<?=$info['id']?>" class="edit_btn"><i
                                             class="bi bi-pencil-square"></i></a></td>
                             </tr>
-                            <tr>
+                            <?php } ?>
 
                         </tbody>
                     </table>
+                </div>
         </form>
 
 
@@ -153,7 +158,7 @@ require_once ('../controllers/dbFunction.php');
         <form class="container" action="#" method="POST">
                 <div class="product-table container mt-5 table-responsive">
                 <div class="table-title"><h2>Categories</h2></div>
-                    <table class="tabl-e table">
+                    <table class="tabl-e table" id="datatable">
                         <thead>
                             <tr>
                                 <th scope="col">ID</th>
@@ -167,14 +172,11 @@ require_once ('../controllers/dbFunction.php');
 
                             <tr>
                                 <?php foreach ($row as $category){ ?>
-                                <th scope="row">1</th>
+                                <th scope="row"><?=$category['id']?></th>
                                 <td><?=$category['name']?></td>
                                 <!-- <input type="hidden" name="id-c" > -->
                                 <td><button type="submit" value="<?=$category['id']?>"  class="del_btn" name="del-c" ><i
                                             class="bi bi-trash3-fill"></i></button></td>
-
-                                <!-- <td><a href="dashboard.php" class="del_btn"><i
-                                            class="bi bi-trash3-fill"></i></a></td> -->
                                 <td><a href="form.php?editcategoryid=<?=$category['id']?>" class="edit_btn"><i
                                             class="bi bi-pencil-square"></i></a></td>
                             </tr>
@@ -223,7 +225,21 @@ require_once ('../controllers/dbFunction.php');
             <input type="text" id="post-title" name="post-title">
 
             <label for="post-content" id="description">Post Content:</label>
+            <script src="https://cdn.tiny.cloud/1/sc5gr4ufscakvxl0769jshvc0883ter7sbbcmdeoqwd5oesd/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
             <textarea id="post-content" name="post-content"></textarea>
+            <script>
+            tinymce.init({
+                selector: 'textarea',
+                plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
+                toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+                tinycomments_mode: 'embedded',
+                tinycomments_author: 'Author name',
+                mergetags_list: [
+                { value: 'First.Name', title: 'First Name' },
+                { value: 'Email', title: 'Email' },
+                ],
+            });
+            </script>
             <label for="post-image">Post Image:</label>
             <input type="file" id="post-image" name="post-image">
 
@@ -268,8 +284,28 @@ require_once ('../controllers/dbFunction.php');
             </div>
         </div>
     </div>
-
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+<script>
+$(document).ready(function () {
+    $('#datatable,#tablepost').DataTable(
+        {
+      "pagingType":"full_numbers",
+      "lengthMenu":[
+        [10, 25, 50, -1],
+        [10, 25, 50, "All"]
+    ],
+    responsive:true,
+    language:{
+      search: "INPUT",
+      searchPlaceholder:"Search",
+    }
+    }
+    );
+    
+});
+</script>
 
 
 </body>
